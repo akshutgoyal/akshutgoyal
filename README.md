@@ -125,23 +125,6 @@ Built for WeMakeDevs *Environmental Hacks*. Turns a walk into a road survey: pot
 
 ---
 
-## 📊 GitHub in numbers
-
-<div align="center">
-
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=akshutgoyal&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&rank_icon=github" alt="GitHub stats" />
-<img width="41%" src="https://streak-stats.demolab.com?user=akshutgoyal&theme=tokyonight&hide_border=true&date_format=j%20M%5B%20Y%5D" alt="Streak" />
-
-<img width="45%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshutgoyal&layout=compact&theme=tokyonight&hide_border=true&langs_count=8&count_private=true" alt="Top languages" />
-
-<br/>
-
-<img width="95%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=akshutgoyal&theme=tokyonight" alt="Profile details" />
-
-</div>
-
----
-
 ## 📌 Featured projects
 
 | Project | What it does | Built with |
