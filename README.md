@@ -1,17 +1,21 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=32&pause=1200&color=0969DA&center=true&vCenter=true&width=800&height=70&lines=Akshut+Goyal;I+build+local-first+tools;One+engine%2C+several+surfaces;Python+%C2%B7+TypeScript+%C2%B7+Solidity+%C2%B7+C" alt="Akshut Goyal" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=26&pause=1500&color=0969DA&center=true&vCenter=true&width=760&height=70&repeat=true&lines=Akshut+Goyal;I+build+local-first+Linux+tools;Systems+in+C+%C2%B7+on-device+ML+%C2%B7+blockchain;One+engine%2C+several+surfaces" alt="Akshut Goyal" />
 
 **B.Tech @ Delhi Technological University · Delhi, India**
 
 Local-first software, systems in C, and blockchain that actually solves something.
 
+<p>
 <a href="https://github.com/akshutgoyal"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
 <a href="https://akshutgoyal.github.io/"><img src="https://img.shields.io/badge/Portfolio-0969DA?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio" /></a>
 <a href="mailto:akshutgoyal@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+</p>
 
+<p>
 <img src="https://komarev.com/ghpvc/?username=akshutgoyal&label=Profile%20views&color=0969da&style=flat" alt="Profile views" />
 <img src="https://img.shields.io/github/followers/akshutgoyal?label=Followers&style=flat&color=0969da" alt="Followers" />
+</p>
 
 </div>
 
@@ -19,14 +23,16 @@ Local-first software, systems in C, and blockchain that actually solves somethin
 
 ## 👋 About me
 
-I build software the way I wish more of it were built: **local-first**, honest about which parts are finished, and quiet about the rest. Most of what I make follows one pattern — put the real work in a single engine, then let whichever surface you actually want (a terminal, a GTK window, a browser) drive that same engine.
+I like software that does one thing properly and then gets out of the way. Most of what I build is **local-first**: your data lives on your machine, one engine does the real work, and whichever surface you actually want — a terminal, a GTK window, a browser tab — sits on top of that same engine.
+
+I'm not precious about polish before the core works, and I'm honest about what isn't finished yet.
 
 - 🖥️ **Linux-native desktop** — GTK4/libadwaita, Qt/PySide6, systemd user units, Arch packaging
-- 🔐 **Systems & security** — C, process confinement with `bwrap`/Seatbelt, fail-closed permission design
-- ⛓️ **Blockchain that earns its place** — soulbound records, consent expressed as contract state rather than policy
+- 🔐 **Systems & security** — C, process confinement with `bwrap`/Seatbelt, permissions that fail closed
+- ⛓️ **Blockchain, when it earns its place** — soulbound records, consent expressed as contract state rather than policy
 - 🤖 **On-device ML** — YOLOv8 → ONNX → TFLite, so inference runs on the phone instead of a datacenter
 - 🌐 **Where it started** — static sites and PHP/Laravel apps from 2022, which is why I still reach for a plain HTML file when that's the honest answer
-- 📚 **Learning in the open** — currently working through a self-written CS curriculum from fundamentals to systems
+- 📚 **Learning in the open** — working through a self-written CS curriculum, fundamentals to systems
 
 ---
 
@@ -34,22 +40,22 @@ I build software the way I wish more of it were built: **local-first**, honest a
 
 ### 🧩 The Aethel suite — 16 repositories
 
-One idea applied repeatedly, most of it private while it's still in the shop. Every piece is a **local-first Linux tool**: your data stays on your machine, one engine runs the show, and several interfaces front it.
+One idea applied a lot of times: **local-first Linux tools** where your data stays on your machine. Most of it is private while it's still in the shop, but the shape is consistent enough to be worth naming.
 
-- **`aethel-launcher`** — a multi-slot cloud-gaming session launcher. One Playwright engine behind **four front-ends** (GTK4/libadwaita, a FastAPI web dashboard, a CLI, and PySide6), a single supervision lock so only one process starts or stops anything. No licence key, no telemetry, no phone-home.
-- **`aethel-todo`** — a local-first task and chore manager. A Bun daemon owns SQLite and the recurrence engine; a CLI, an Ink TUI streamed over SSE, and an installable React PWA are the surfaces. Gamified on purpose: points ledgers, per-task streaks, a rewards catalogue you redeem against yourself.
-- **`aethel-harness`** — a plugin-first AI agent harness. The append-only session log is the only source of truth (model history is *derived*, never stored), permissions fail closed, and every registration returns a disposer that unwinds in reverse.
+- **`aethel-launcher`** — a multi-slot cloud-gaming session launcher. A single Playwright engine sits behind **four front-ends** (GTK4/libadwaita, a FastAPI web dashboard, a CLI, and PySide6), and one supervision lock makes sure only one process ever gets to start or stop anything. No licence key, no telemetry, no phone-home.
+- **`aethel-todo`** — a local-first task and chore manager. A Bun daemon owns SQLite and the recurrence engine; the CLI, an Ink TUI streamed over SSE, and an installable React PWA are just surfaces in front of it. Gamified on purpose — points ledgers, per-task streaks, and a rewards catalogue you redeem against yourself.
+- **`aethel-harness`** — a plugin-first AI agent harness. The append-only session log is the only real source of truth; model history is *derived* from it, never stored twice. Permissions fail closed, and every registration hands back a disposer that unwinds in reverse.
 - A dozen smaller Linux utilities around them: `studio`, `janitor`, `receipts`, `restock`, `surveyor`, `macro`, `reddit-finder`, `comment-manager`, `description-manager`, `game-launcher`, `adventures`.
 
 **Public from the suite:** the **[VMC session injector](https://github.com/akshutgoyal/aethel-vmc-injector)** and its **[Chrome extension](https://github.com/akshutgoyal/aethel-vmc-extension)**.
 
 ### 🌱 RoadSense — street defects with a site history
 
-Built for WeMakeDevs *Environmental Hacks*. Turns a walk into a road survey: potholes detected on-device and geotagged automatically, C&D heaps photographed by hand, and both reaching the same engineer worklist with evidence, closure audit and recycler routing. Nearby sightings merge into persistent site records, so a recurring dump reopens the same case instead of arriving as a new complaint.
+Built for WeMakeDevs *Environmental Hacks*. It turns a walk into a road survey: potholes get detected on-device and geotagged automatically, C&D heaps are photographed by hand, and both end up in the same engineer worklist with evidence, a closure audit, and recycler routing. Nearby sightings merge into persistent site records, so a dump that keeps coming back reopens the same case instead of arriving as yet another new complaint.
 
 ### 🩺 Patient-owned medical records
 
-**[ApnaRecord](https://github.com/akshutgoyal/ApnaRecord)** and its predecessor **[AarogyaChain](https://github.com/akshutgoyal/aarogyachain)** ask the same question twice: what if the patient held the record instead of the hospital? Login is a wallet, a record is a soulbound token, permission is a smart contract that re-checks every call — and anyone can verify a record for free, without trusting the operator.
+**[ApnaRecord](https://github.com/akshutgoyal/ApnaRecord)** and its predecessor **[AarogyaChain](https://github.com/akshutgoyal/aarogyachain)** are two attempts at the same question — what if the patient held the record instead of the hospital? Login is a wallet, a record is a soulbound token, and permission is a smart contract that re-checks on every call. Anyone can verify a record for free, without trusting whoever is running the thing.
 
 ---
 
@@ -136,7 +142,7 @@ Built for WeMakeDevs *Environmental Hacks*. Turns a walk into a road survey: pot
 
 | Project | What it does | Built with |
 | :--- | :--- | :--- |
-| 🌱 **[ROADSENSE](https://github.com/akshutgoyal/ROADSENSE)** | Gives street defects a site history, an accountable fix and a path to reuse — potholes detected on-device, C&D heaps captured by hand, both landing in one engineer worklist with closure audit and recycler routing. | Flutter · PyTorch / YOLOv8 · React 19 · MapLibre · AWS |
+| 🌱 **[ROADSENSE](https://github.com/akshutgoyal/ROADSENSE)** | Gives street defects a site history and an accountable fix — potholes detected on-device, C&D heaps captured by hand, both landing in one engineer worklist with closure audit and recycler routing. | Flutter · PyTorch / YOLOv8 · React 19 · MapLibre · AWS |
 | 🩺 **[ApnaRecord](https://github.com/akshutgoyal/ApnaRecord)** | Patient-owned medical records. Login is a wallet, a record is a soulbound token, permission is a smart contract — verifiable by anyone, for free, without trusting the operator. | Solidity · OpenZeppelin · Base Sepolia · React · Express · Cloudflare R2 |
 | ⛓️ **[AarogyaChain](https://github.com/akshutgoyal/aarogyachain)** · **[website](https://github.com/akshutgoyal/aarogyachain-website)** | The contract-first predecessor to ApnaRecord: consent as chain state, with a production-look React demo UI ([live build](https://akshutgoyal.github.io/aarogyachain-website/)) and an advisory-only AI summariser that never touches the chain or a key. | Solidity · React · Vite · ethers v6 · MetaMask |
 | 🎓 **[aethel-vmc-injector](https://github.com/akshutgoyal/aethel-vmc-injector)** · **[extension](https://github.com/akshutgoyal/aethel-vmc-extension)** | Turns a coaching-portal roll number and activation code into a browser session — a CLI/Node injector plus an unpacked MV3 Chrome extension that signs the active tab in. | TypeScript · Node · Chrome MV3 |
@@ -179,12 +185,14 @@ The rest of what's up here — earlier web work and a couple of automation tools
 
 <div align="center">
 
-I'm happy to talk about local-first design, Linux tooling, on-device ML, or why a smart contract is the right answer to a question you haven't asked yet.
+I'm always happy to talk about local-first design, Linux tooling, on-device ML, or why a smart contract is the right answer to a question you haven't asked yet.
 
+<p>
 <a href="mailto:akshutgoyal@gmail.com"><img src="https://img.shields.io/badge/Say_hello-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 <a href="https://github.com/akshutgoyal?tab=followers"><img src="https://img.shields.io/badge/Follow-181717?style=for-the-badge&logo=github&logoColor=white" alt="Follow" /></a>
+</p>
 
-<br/><br/>
+<br/>
 
 <sub>Most of the interesting work is in private repos — it ships when it's honest about what isn't finished.</sub>
 
