@@ -25,6 +25,7 @@ I build software the way I wish more of it were built: **local-first**, honest a
 - 🔐 **Systems & security** — C, process confinement with `bwrap`/Seatbelt, fail-closed permission design
 - ⛓️ **Blockchain that earns its place** — soulbound records, consent expressed as contract state rather than policy
 - 🤖 **On-device ML** — YOLOv8 → ONNX → TFLite, so inference runs on the phone instead of a datacenter
+- 🌐 **Where it started** — static sites and PHP/Laravel apps from 2022, which is why I still reach for a plain HTML file when that's the honest answer
 - 📚 **Learning in the open** — currently working through a self-written CS curriculum from fundamentals to systems
 
 ---
@@ -77,6 +78,8 @@ Built for WeMakeDevs *Environmental Hacks*. Turns a walk into a road survey: pot
 <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
 <img src="https://img.shields.io/badge/GTK4_%2F_libadwaita-4A86CF?style=for-the-badge&logo=gtk&logoColor=white" />
 <img src="https://img.shields.io/badge/Qt_%2F_PySide6-41CD52?style=for-the-badge&logo=qt&logoColor=black" />
+<img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white" />
 </p>
 
 **Backend & Data**
@@ -89,6 +92,10 @@ Built for WeMakeDevs *Environmental Hacks*. Turns a walk into a road survey: pot
 <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" />
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
 <img src="https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white" />
+<img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+<img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
 </p>
 
 **Blockchain**
@@ -135,6 +142,22 @@ Built for WeMakeDevs *Environmental Hacks*. Turns a walk into a road survey: pot
 | 🎓 **[aethel-vmc-injector](https://github.com/akshutgoyal/aethel-vmc-injector)** · **[extension](https://github.com/akshutgoyal/aethel-vmc-extension)** | Turns a coaching-portal roll number and activation code into a browser session — a CLI/Node injector plus an unpacked MV3 Chrome extension that signs the active tab in. | TypeScript · Node · Chrome MV3 |
 | 🐍 **[zulip-processor-practice](https://github.com/akshutgoyal/zulip-processor-practice)** | Working through the Zulip API surface against a real server to practise reading and extending someone else's codebase. | Python · Zulip API |
 | ⚙️ **[CS101](https://github.com/akshutgoyal/CS101)** · **[SSE-Task-1](https://github.com/akshutgoyal/SSE-Task-1)** · **[Keylogger](https://github.com/akshutgoyal/Keylogger)** | C fundamentals, from pointers and structs up to a Linux key-event reader built as a step-by-step exercise for DTU's EHAX cybersecurity club. | C · Make |
+
+---
+
+## 🗄️ Also public
+
+The rest of what's up here — earlier web work and a couple of automation tools, newest first.
+
+| Project | What it is | Built with |
+| :--- | :--- | :--- |
+| 🎯 **[Earnpt-Automation](https://github.com/akshutgoyal/Earnpt-Automation)** | Playwright driving an already-signed-in Chrome profile over the DevTools Protocol — opens AI tabs, sends prompts, and steps through accounts behind a verified-view counter. | JavaScript · Playwright · CDP |
+| 🛡️ **[DDOS-Tester](https://github.com/akshutgoyal/DDOS-Tester)** | An async load tester that ramps concurrency gradually to find where a server's rate limits and breaking points actually sit. Carries an explicit authorised-use disclaimer. | Python · aiohttp |
+| 💚 **[Green-Pulse-Connect](https://github.com/akshutgoyal/Green-Pulse-Connect)** | A sustainability community platform — green living tips, renewable energy, zero-waste living, eco-product reviews and climate advocacy in one place. | Laravel 10 · PHP 8.1 · Livewire · MySQL |
+| ♾️ **[SrinivasaRamanujan](https://github.com/akshutgoyal/SrinivasaRamanujan)** · **[Independia](https://github.com/akshutgoyal/Independia)** | Two Design Championship entries — a tribute to Ramanujan (2023) and a journey-towards-independence piece (2022). Both still have live builds. | HTML · CSS · JavaScript |
+| ✍️ **[Bloggers-Hub](https://github.com/akshutgoyal/Bloggers-Hub)** | A multi-page blog site — about, contact, privacy, terms and a working registration flow — written before I ever reached for a framework. | HTML · CSS · Bootstrap · jQuery |
+| 🏛️ **[Virtual-Museum](https://github.com/akshutgoyal/Virtual-Museum)** | A PHP virtual tour of the National Museum, New Delhi, with a self-hosted carousel and a downloadable brochure. | PHP · jQuery · Owl Carousel |
+| 📈 **[GrowtheX](https://github.com/akshutgoyal/GrowtheX)** | A landing site for a stock-trading concept, complete with an animated profit calculator in the marketing copy. | HTML · CSS · jQuery · Lottie |
 
 ---
 
