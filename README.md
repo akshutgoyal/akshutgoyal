@@ -7,47 +7,12 @@
 
 ---
 
-## 📌 Featured projects
-
-| Project | What it does | Built with |
-| :--- | :--- | :--- |
-| 🌱 **[ROADSENSE](https://github.com/akshutgoyal/ROADSENSE)** | Gives street defects a site history and an accountable fix — potholes detected on-device, C&D heaps captured by hand, both landing in one engineer worklist with closure audit and recycler routing. | Flutter · PyTorch / YOLOv8 · React 19 · MapLibre · AWS |
-| 🩺 **[ApnaRecord](https://github.com/akshutgoyal/ApnaRecord)** | Patient-owned medical records. Login is a wallet, a record is a soulbound token, permission is a smart contract — verifiable by anyone, for free, without trusting the operator. | Solidity · OpenZeppelin · Base Sepolia · React · Express · Cloudflare R2 |
-| ⛓️ **[AarogyaChain](https://github.com/akshutgoyal/aarogyachain)** · **[website](https://github.com/akshutgoyal/aarogyachain-website)** | The contract-first predecessor to ApnaRecord: consent as chain state, with a production-look React demo UI ([live build](https://akshutgoyal.github.io/aarogyachain-website/)) and an advisory-only AI summariser that never touches the chain or a key. | Solidity · React · Vite · ethers v6 · MetaMask |
-| 🎓 **[aethel-vmc-injector](https://github.com/akshutgoyal/aethel-vmc-injector)** · **[extension](https://github.com/akshutgoyal/aethel-vmc-extension)** | Turns a coaching-portal roll number and activation code into a browser session — a CLI/Node injector plus an unpacked MV3 Chrome extension that signs the active tab in. | TypeScript · Node · Chrome MV3 |
-| 🐍 **[zulip-processor-practice](https://github.com/akshutgoyal/zulip-processor-practice)** | Working through the Zulip API surface against a real server to practise reading and extending someone else's codebase. | Python · Zulip API |
-| ⚙️ **[CS101](https://github.com/akshutgoyal/CS101)** · **[SSE-Task-1](https://github.com/akshutgoyal/SSE-Task-1)** · **[Keylogger](https://github.com/akshutgoyal/Keylogger)** | C fundamentals, from pointers and structs up to a Linux key-event reader built as a step-by-step exercise for DTU's EHAX cybersecurity club. | C · Make |
-
----
-
-## 🚀 What I'm building
-
-### 🧩 The Aethel suite — 16 repositories
-
-One idea applied a lot of times: **local-first Linux tools** where your data stays on your machine. Most of it is private while it's still in the shop, but the shape is consistent enough to be worth naming.
-
-- **`aethel-launcher`** — a multi-slot cloud-gaming session launcher. A single Playwright engine sits behind **four front-ends** (GTK4/libadwaita, a FastAPI web dashboard, a CLI, and PySide6), and one supervision lock makes sure only one process ever gets to start or stop anything. No licence key, no telemetry, no phone-home.
-- **`aethel-todo`** — a local-first task and chore manager. A Bun daemon owns SQLite and the recurrence engine; the CLI, an Ink TUI streamed over SSE, and an installable React PWA are just surfaces in front of it. Gamified on purpose — points ledgers, per-task streaks, and a rewards catalogue you redeem against yourself.
-- **`aethel-harness`** — a plugin-first AI agent harness. The append-only session log is the only real source of truth; model history is *derived* from it, never stored twice. Permissions fail closed, and every registration hands back a disposer that unwinds in reverse.
-- A dozen smaller Linux utilities around them: `studio`, `janitor`, `receipts`, `restock`, `surveyor`, `macro`, `reddit-finder`, `comment-manager`, `description-manager`, `game-launcher`, `adventures`.
-
-**Public from the suite:** the **[VMC session injector](https://github.com/akshutgoyal/aethel-vmc-injector)** and its **[Chrome extension](https://github.com/akshutgoyal/aethel-vmc-extension)**.
-
-### 🌱 RoadSense — street defects with a site history
-
-Built for WeMakeDevs *Environmental Hacks*. It turns a walk into a road survey: potholes get detected on-device and geotagged automatically, C&D heaps are photographed by hand, and both end up in the same engineer worklist with evidence, a closure audit, and recycler routing. Nearby sightings merge into persistent site records, so a dump that keeps coming back reopens the same case instead of arriving as yet another new complaint.
-
-### 🩺 Patient-owned medical records
-
-**[ApnaRecord](https://github.com/akshutgoyal/ApnaRecord)** and its predecessor **[AarogyaChain](https://github.com/akshutgoyal/aarogyachain)** are two attempts at the same question — what if the patient held the record instead of the hospital? Login is a wallet, a record is a soulbound token, and permission is a smart contract that re-checks on every call. Anyone can verify a record for free, without trusting whoever is running the thing.
-
----
-
 ## 🛠️ Tech I work in
 
-**Languages**
+<div align="center">
 
 <p>
+<b>Languages</b><br/>
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
@@ -58,9 +23,8 @@ Built for WeMakeDevs *Environmental Hacks*. It turns a walk into a road survey: 
 <img src="https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white" />
 </p>
 
-**Frontend & Desktop**
-
 <p>
+<b>Frontend &amp; desktop</b><br/>
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
 <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
 <img src="https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
@@ -71,46 +35,19 @@ Built for WeMakeDevs *Environmental Hacks*. It turns a walk into a road survey: 
 <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white" />
 </p>
 
-**Backend & Data**
-
 <p>
+<b>Backend, data &amp; infra</b><br/>
 <img src="https://img.shields.io/badge/Bun-000000?style=flat-square&logo=bun&logoColor=white" />
 <img src="https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white" />
 <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
 <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white" />
+<img src="https://img.shields.io/badge/Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white" />
 <img src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" />
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" />
-<img src="https://img.shields.io/badge/Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white" />
-<img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" />
-<img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white" />
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" />
-</p>
-
-**Blockchain**
-
-<p>
-<img src="https://img.shields.io/badge/Solidity-363636?style=flat-square&logo=solidity&logoColor=white" />
-<img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=flat-square&logo=ethereum&logoColor=white" />
-<img src="https://img.shields.io/badge/ethers.js-2535A0?style=flat-square&logo=ethers&logoColor=white" />
-<img src="https://img.shields.io/badge/OpenZeppelin-4E5EE4?style=flat-square&logo=openzeppelin&logoColor=white" />
-<img src="https://img.shields.io/badge/Base_Sepolia-0052FF?style=flat-square&logo=coinbase&logoColor=white" />
-</p>
-
-**ML & Automation**
-
-<p>
-<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" />
-<img src="https://img.shields.io/badge/Ultralytics_YOLOv8-111F68?style=flat-square&logo=yolo&logoColor=white" />
-<img src="https://img.shields.io/badge/ONNX-005CED?style=flat-square&logo=onnx&logoColor=white" />
-<img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" />
-<img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
-<img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" />
-</p>
-
-**Platform & Tooling**
-
-<p>
+<img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" />
+<img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white" />
 <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
 <img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=flat-square&logo=archlinux&logoColor=white" />
 <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" />
@@ -119,11 +56,32 @@ Built for WeMakeDevs *Environmental Hacks*. It turns a walk into a road survey: 
 <img src="https://img.shields.io/badge/Cloudflare_R2-F38020?style=flat-square&logo=cloudflare&logoColor=white" />
 </p>
 
+<p>
+<b>Blockchain</b><br/>
+<img src="https://img.shields.io/badge/Solidity-363636?style=flat-square&logo=solidity&logoColor=white" />
+<img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=flat-square&logo=ethereum&logoColor=white" />
+<img src="https://img.shields.io/badge/ethers.js-2535A0?style=flat-square&logo=ethers&logoColor=white" />
+<img src="https://img.shields.io/badge/OpenZeppelin-4E5EE4?style=flat-square&logo=openzeppelin&logoColor=white" />
+<img src="https://img.shields.io/badge/Base_Sepolia-0052FF?style=flat-square&logo=coinbase&logoColor=white" />
+</p>
+
+<p>
+<b>ML &amp; automation</b><br/>
+<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" />
+<img src="https://img.shields.io/badge/Ultralytics_YOLOv8-111F68?style=flat-square&logo=yolo&logoColor=white" />
+<img src="https://img.shields.io/badge/ONNX-005CED?style=flat-square&logo=onnx&logoColor=white" />
+<img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" />
+<img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
+<img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" />
+</p>
+
+</div>
+
 ---
 
 ## 🗄️ Also public
 
-The rest of what's up here — earlier web work and a couple of automation tools, newest first.
+Earlier web work and a couple of automation tools, newest first.
 
 | Project | What it is | Built with |
 | :--- | :--- | :--- |
