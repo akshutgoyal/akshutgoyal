@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="985" height="530"
+     font-family="Consolas,Menlo,DejaVu Sans Mono,monospace" font-size="16">
+<style>
+.key   {fill: #ffa657;}
+.value {fill: #a5d6ff;}
+.cc    {fill: #616e7f;}
+text, tspan {white-space: pre;}
+</style>
+<defs>
+  <linearGradient id="art" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#58a6ff"/>
+    <stop offset="100%" stop-color="#bc8cff"/>
+  </linearGradient>
+</defs>
+<rect width="985" height="530" fill="#161b22" rx="15"/>
+<g fill="url(#art)">
+<rect x="37.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="47.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="57.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="27.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="67.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="27.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="37.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="47.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="57.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="67.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="27.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="67.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="27.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="67.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="127.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="117.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="97.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="107.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="117.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="127.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="157.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="167.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="177.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="187.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="147.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="157.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="167.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="177.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="187.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="147.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="157.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="167.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="177.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="207.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="207.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="207.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="217.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="227.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="237.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="207.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="207.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="267.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="307.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="267.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="307.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="267.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="307.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="267.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="307.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="277.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="287.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="297.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="327.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="337.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="347.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="357.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="367.5" y="116.0" width="8.5" height="18.5"/>
+<rect x="347.5" y="136.0" width="8.5" height="18.5"/>
+<rect x="347.5" y="156.0" width="8.5" height="18.5"/>
+<rect x="347.5" y="176.0" width="8.5" height="18.5"/>
+<rect x="347.5" y="196.0" width="8.5" height="18.5"/>
+<rect x="67.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="77.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="97.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="57.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="57.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="97.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="57.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="97.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="67.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="77.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="87.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="97.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="127.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="137.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="147.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="117.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="157.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="117.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="157.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="117.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="157.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="127.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="137.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="147.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="177.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="217.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="177.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="217.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="197.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="197.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="197.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="257.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="267.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="237.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="277.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="237.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="247.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="257.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="267.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="277.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="237.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="277.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="237.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="277.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="297.5" y="230.0" width="8.5" height="18.5"/>
+<rect x="297.5" y="250.0" width="8.5" height="18.5"/>
+<rect x="297.5" y="270.0" width="8.5" height="18.5"/>
+<rect x="297.5" y="290.0" width="8.5" height="18.5"/>
+<rect x="297.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="307.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="317.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="327.5" y="310.0" width="8.5" height="18.5"/>
+<rect x="337.5" y="310.0" width="8.5" height="18.5"/>
+</g>
+<text x="15" y="30" class="cc">
+<tspan x="39" y="386">local-first · systems · blockchain</tspan>
+<tspan x="68" y="408">one engine, several surfaces</tspan>
+</text>
+<text x="390" y="30" fill="#c9d1d9">
+<tspan x="390" y="30">akshut@goyal ───────────────────────────────────────────────</tspan>
+<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">. Location</tspan><tspan class="cc">:........... </tspan><tspan class="value">Delhi, India</tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">. Education</tspan><tspan class="cc">:.......... </tspan><tspan class="value">B.Tech @ DTU</tspan>
+<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">. OS</tspan><tspan class="cc">:................. </tspan><tspan class="value">Arch Linux, Android</tspan>
+<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">. Coding since</tspan><tspan class="cc">:....... </tspan><tspan class="value">2022</tspan>
+<tspan x="390" y="130" class="cc">. </tspan>
+<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">. Focus</tspan><tspan class="cc">:.............. </tspan><tspan class="value">Local-first software, Linux tooling</tspan>
+<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">. Languages.Code</tspan><tspan class="cc">:..... </tspan><tspan class="value">Python, TypeScript, C, Solidity</tspan>
+<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">. Languages.Markup</tspan><tspan class="cc">:... </tspan><tspan class="value">HTML, CSS, JSON, YAML</tspan>
+<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">. Languages.Real</tspan><tspan class="cc">:..... </tspan><tspan class="value">English, Hindi</tspan>
+<tspan x="390" y="230" class="cc">. </tspan>
+<tspan x="390" y="250" class="cc">. </tspan><tspan class="key">. Desktop</tspan><tspan class="cc">:............ </tspan><tspan class="value">GTK4/libadwaita, Qt/PySide6</tspan>
+<tspan x="390" y="270" class="cc">. </tspan><tspan class="key">. Backend</tspan><tspan class="cc">:............ </tspan><tspan class="value">Bun, FastAPI, SQLite, Laravel</tspan>
+<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">. Blockchain</tspan><tspan class="cc">:......... </tspan><tspan class="value">Solidity, ethers.js, OpenZeppelin</tspan>
+<tspan x="390" y="310" class="cc">. </tspan><tspan class="key">. On-device ML</tspan><tspan class="cc">:....... </tspan><tspan class="value">PyTorch, YOLOv8, ONNX, TFLite</tspan>
+<tspan x="390" y="330" class="cc">. </tspan><tspan class="key">. Automation</tspan><tspan class="cc">:......... </tspan><tspan class="value">Playwright, GitHub Actions</tspan>
+<tspan x="390" y="350" class="cc">. </tspan>
+<tspan x="390" y="370">- Contact ──────────────────────────────────────────────────</tspan>
+<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">. Email</tspan><tspan class="cc">:.............. </tspan><tspan class="value">akshutgoyal@gmail.com</tspan>
+<tspan x="390" y="410" class="cc">. </tspan><tspan class="key">. GitHub</tspan><tspan class="cc">:............. </tspan><tspan class="value">akshutgoyal</tspan>
+<tspan x="390" y="430" class="cc">. </tspan><tspan class="key">. LinkedIn</tspan><tspan class="cc">:........... </tspan><tspan class="value">akshut</tspan>
+<tspan x="390" y="450" class="cc">. </tspan><tspan class="key">. Portfolio</tspan><tspan class="cc">:.......... </tspan><tspan class="value">akshutgoyal.github.io</tspan>
+<tspan x="390" y="470" class="cc">. </tspan>
+<tspan x="390" y="490">- Currently ────────────────────────────────────────────────</tspan>
+<tspan x="390" y="510" class="cc">. </tspan><tspan class="key">. Building</tspan><tspan class="cc">:........... </tspan><tspan class="value">The Aethel suite (16 tools)</tspan>
+</text>
+</svg>

@@ -1,40 +1,9 @@
-<div align="center">
-
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=26&pause=1800&color=0969DA&center=true&vCenter=true&width=760&height=70&repeat=true&duration=3500&lines=Akshut+Goyal;I+build+local-first+Linux+tools;Systems+in+C+%C2%B7+on-device+ML+%C2%B7+blockchain;One+engine%2C+several+surfaces" alt="Akshut Goyal" />
-
-**B.Tech @ Delhi Technological University · Delhi, India**
-
-Local-first software, systems in C, and blockchain that actually solves something.
-
-<p>
-<a href="https://github.com/akshutgoyal"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
-<a href="https://www.linkedin.com/in/akshut/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-<a href="https://akshutgoyal.github.io/"><img src="https://img.shields.io/badge/Portfolio-0969DA?style=flat-square&logo=githubpages&logoColor=white" alt="Portfolio" /></a>
-<a href="mailto:akshutgoyal@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
-</p>
-
-<p>
-<img src="https://komarev.com/ghpvc/?username=akshutgoyal&label=Profile%20views&color=0969da&style=flat-square" alt="Profile views" />
-<img src="https://img.shields.io/github/followers/akshutgoyal?label=Followers&style=flat-square&color=0969da" alt="Followers" />
-<img src="https://img.shields.io/badge/now%20building-the%20Aethel%20suite-8250DF?style=flat-square" alt="Now building: the Aethel suite" />
-</p>
-
-</div>
-
----
-
-## 👋 About me
-
-I like software that does one thing properly and then gets out of the way. Most of what I build is **local-first**: your data lives on your machine, one engine does the real work, and whichever surface you actually want — a terminal, a GTK window, a browser tab — sits on top of that same engine.
-
-I'm not precious about polish before the core works, and I'm honest about what isn't finished yet.
-
-- 🖥️ **Linux-native desktop** — GTK4/libadwaita, Qt/PySide6, systemd user units, Arch packaging
-- 🔐 **Systems & security** — C, process confinement with `bwrap`/Seatbelt, permissions that fail closed
-- ⛓️ **Blockchain, when it earns its place** — soulbound records, consent expressed as contract state rather than policy
-- 🤖 **On-device ML** — YOLOv8 → ONNX → TFLite, so inference runs on the phone instead of a datacenter
-- 🌐 **Where it started** — static sites and PHP/Laravel apps from 2022, which is why I still reach for a plain HTML file when that's the honest answer
-- 📚 **Learning in the open** — working through a self-written CS curriculum, fundamentals to systems
+<a href="https://github.com/akshutgoyal/akshutgoyal">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/akshutgoyal/akshutgoyal/main/banner-dark.svg">
+    <img alt="Akshut Goyal — B.Tech at Delhi Technological University. Local-first software, systems in C, and blockchain that earns its place. Arch Linux, Android; Python, TypeScript, C, Solidity; GTK4/libadwaita, Qt, Bun, FastAPI, SQLite, PyTorch, YOLOv8, ONNX, Playwright. Email akshutgoyal@gmail.com." src="https://raw.githubusercontent.com/akshutgoyal/akshutgoyal/main/banner-light.svg">
+  </picture>
+</a>
 
 ---
 
