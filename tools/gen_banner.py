@@ -1,53 +1,68 @@
 #!/usr/bin/env python3
 """Generate the neofetch-style profile banner (dark + light variants).
 
-Inspired by github.com/Andrew6rant/Andrew6rant, which renders its profile
-head as a self-contained SVG rather than a README of markdown widgets.
+Modelled on github.com/Andrew6rant/Andrew6rant, which renders its profile
+head as a single self-contained SVG: an ASCII-art portrait drawn in
+monospace text on the left, a neofetch key/value block on the right, both
+syntax-highlighted with GitHub's own theme colours.
 
-The left column is the GitHub avatar, downsampled to a 64x64 pixel grid and
-embedded as a base64 PNG. It has to be embedded rather than linked: an SVG
-rendered via <img> (which is how GitHub shows it) cannot load external
-resources, so a remote href would silently render as nothing.
+Matching his technique means the portrait is *text*, not an embedded raster
+image -- so there is no base64 payload, the file stays ~6 KB, and the
+portrait recolours with the theme instead of being a fixed photo.
 
-Deps: pillow  (pip install pillow)
+Two things this particular source photo needs that the reference banner's
+does not, because his is a face against a plain dark wall:
+
+  1. GrabCut, to lift the cat off a busy tiled background. Without it the
+     grout lines and wall stains render as noise and swamp the subject.
+  2. A short 10-level ramp. A long ramp (60+ glyphs) resolves to
+     high-frequency mush at 38x25 cells; ten levels read as shapes.
+
+Deps: pillow, numpy, opencv-python
 Run:  python3 tools/gen_banner.py
 Out:  banner-dark.svg, banner-light.svg
 """
 
-import base64
 import sys
 import urllib.request
 from io import BytesIO
 from pathlib import Path
 
 try:
-    from PIL import Image, ImageEnhance
+    import cv2
+    import numpy as np
+    from PIL import Image, ImageDraw
 except ImportError:
-    sys.exit("needs pillow:  pip install pillow")
+    sys.exit("needs pillow, numpy and opencv-python:\n"
+             "  pip install pillow numpy opencv-python")
 
 # ---------------------------------------------------------------- geometry
 W, H = 985, 530
 RADIUS = 15
-
-FONT_STACK = "Consolas,Menlo,DejaVu Sans Mono,monospace"
 FONT_SIZE = 16
 ROW_STEP = 20
+CHAR_W = 9.6              # monospace advance, worst case
 
-ART_X0, ART_X1 = 15, 390  # left column bounds
-INFO_X = 390              # right column origin
-INFO_COLS = 60            # characters that fit, with headroom for wider fonts
-VALUE_COL = 25            # column where values start
+ART_X0 = 15
+ART_X1 = 390              # left column must stay clear of this
+INFO_X = 390
+INFO_COLS = 60
+VALUE_COL = 25
+
+ART_COLS, ART_ROWS = 38, 25
+ART_TOP = 30
 
 # ---------------------------------------------------------------- avatar
 AVATAR_URL = "https://avatars.githubusercontent.com/u/291477182?s=460&v=4"
-AVATAR_PX = 64            # pixel grid of the portrait
-IMG_SIZE = 360            # on-canvas size
-IMG_RADIUS = 16
-CONTRAST = 1.30           # the source photo is flat and hazy
-SATURATION = 1.35
+GRABCUT_RECT = (30, 20, 400, 400)   # x, y, w, h around the subject
+GRABCUT_ITERS = 6
+CLAHE_CLIP = 3.0
+BLACK, WHITE = 70, 150              # tonal window mapped across the ramp
+
+# Lightest ink to densest. Deliberately short -- see module docstring.
+RAMP = " .:-=+*#%@"
 
 # --------------------------------------------------------------- content
-# Every value below is drawn from the profile README / public repos.
 INFO = [
     ("H1", "akshut@goyal"),
     ("KV", ". Location", "Delhi, India"),
@@ -77,6 +92,7 @@ INFO = [
 ]
 
 # --------------------------------------------------------------- theming
+# Colour values mirror the reference banner's dark/light palettes.
 THEMES = {
     "dark": {
         "bg": "#161b22",
@@ -90,7 +106,7 @@ THEMES = {
         "fg": "#24292f",
         "key": "#953800",
         "value": "#0a3069",
-        "cc": "#6e7781",
+        "cc": "#c2cfde",
     },
 }
 
@@ -99,35 +115,85 @@ def esc(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def avatar_data_uri() -> tuple[str, int]:
-    """Fetch the avatar, pixelate it, return (data URI, PNG byte count)."""
+def subject_image() -> Image.Image:
+    """Fetch the avatar and isolate the subject on a flat white field."""
     req = urllib.request.Request(
         AVATAR_URL, headers={"User-Agent": "akshutgoyal-profile-banner"}
     )
     with urllib.request.urlopen(req, timeout=30) as resp:
         raw = resp.read()
 
-    img = Image.open(BytesIO(raw)).convert("RGB")
-    img = img.resize((AVATAR_PX, AVATAR_PX), Image.LANCZOS)
-    img = ImageEnhance.Contrast(img).enhance(CONTRAST)
-    img = ImageEnhance.Color(img).enhance(SATURATION)
+    bgr = cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR)
+    mask = np.zeros(bgr.shape[:2], np.uint8)
+    bgd = np.zeros((1, 65), np.float64)
+    fgd = np.zeros((1, 65), np.float64)
+    cv2.grabCut(
+        bgr, mask, GRABCUT_RECT, bgd, fgd, GRABCUT_ITERS, cv2.GC_INIT_WITH_RECT
+    )
+    m = np.where(
+        (mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD), 255, 0
+    ).astype(np.uint8)
+    k = np.ones((7, 7), np.uint8)
+    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, k)
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, k)
 
-    buf = BytesIO()
-    img.save(buf, format="PNG", optimize=True)
-    png = buf.getvalue()
-    return "data:image/png;base64," + base64.b64encode(png).decode(), len(png)
+    grey = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    grey = cv2.createCLAHE(clipLimit=CLAHE_CLIP, tileGridSize=(8, 8)).apply(grey)
+
+    ys, xs = np.where(m > 0)
+    h, w = m.shape
+    x0, x1 = max(0, xs.min()), min(w, xs.max())
+    y0, y1 = max(0, ys.min()), min(h, ys.max())
+    sub_g = grey[y0:y1, x0:x1].astype(np.float32)
+    sub_m = m[y0:y1, x0:x1].astype(np.float32) / 255.0
+
+    # Flat white background maps to the space character at the end of the ramp.
+    flat = sub_g * sub_m + 255.0 * (1.0 - sub_m)
+    return Image.fromarray(flat.astype(np.uint8))
 
 
-def build(theme_name: str, uri: str) -> str:
+def ascii_portrait() -> list[str]:
+    img = subject_image()
+
+    # A cell is 9.6 x 20 px, so the character grid is far taller than wide.
+    # Crop the source to that ratio first or the portrait comes out stretched.
+    target = (ART_COLS * CHAR_W) / (ART_ROWS * ROW_STEP)
+    w, h = img.size
+    if w / h > target:
+        nw = h * target
+        img = img.crop(((w - nw) / 2, 0, (w - nw) / 2 + nw, h))
+    else:
+        nh = w / target
+        img = img.crop((0, (h - nh) / 2, w, (h - nh) / 2 + nh))
+
+    img = img.resize((ART_COLS, ART_ROWS), Image.LANCZOS)
+    px = img.load()
+
+    rows = []
+    for y in range(ART_ROWS):
+        row = []
+        for x in range(ART_COLS):
+            lum = max(0.0, min(1.0, (px[x, y] - BLACK) / (WHITE - BLACK)))
+            # Dark pixels become dense glyphs, so on the dark card the subject
+            # reads as the lit region -- how ASCII art behaves on a terminal.
+            row.append(RAMP[min(len(RAMP) - 1, int((1.0 - lum) * len(RAMP)))])
+        rows.append("".join(row))
+    return rows
+
+
+def build(theme_name: str, art: list[str]) -> str:
     c = THEMES[theme_name]
 
-    ix = (ART_X0 + ART_X1) // 2 - IMG_SIZE // 2
-    iy = (H - IMG_SIZE) // 2
+    # Art rows are centred against the 25-row info column.
+    pad = (len(INFO) - len(art)) // 2
+    art_svg = []
+    for i, row in enumerate(art):
+        y = ART_TOP + (i + pad) * ROW_STEP
+        art_svg.append(f'<tspan x="{ART_X0}" y="{y}">{esc(row)}</tspan>')
 
-    # ---- right column: neofetch-style key/value listing ----
     info_svg = []
     for i, row in enumerate(INFO):
-        y = 30 + i * ROW_STEP
+        y = ART_TOP + i * ROW_STEP
         kind = row[0]
 
         if kind == "SP":
@@ -149,24 +215,25 @@ def build(theme_name: str, uri: str) -> str:
             )
 
     return f"""<?xml version='1.0' encoding='UTF-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="{W}" height="{H}" font-family="{FONT_STACK}" font-size="{FONT_SIZE}">
+<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}"
+     font-family="ConsolasFallback,Consolas,monospace" font-size="{FONT_SIZE}">
 <style>
+@font-face {{
+  src: local('Consolas'), local('Consolas Bold');
+  font-family: 'ConsolasFallback';
+  font-display: swap;
+  size-adjust: 109%;
+}}
 .key   {{fill: {c['key']};}}
 .value {{fill: {c['value']};}}
 .cc    {{fill: {c['cc']};}}
 text, tspan {{white-space: pre;}}
-.av {{image-rendering: pixelated; image-rendering: crisp-edges;}}
 </style>
-<defs>
-  <clipPath id="avclip">
-    <rect x="{ix}" y="{iy}" width="{IMG_SIZE}" height="{IMG_SIZE}" rx="{IMG_RADIUS}"/>
-  </clipPath>
-</defs>
 <rect width="{W}" height="{H}" fill="{c['bg']}" rx="{RADIUS}"/>
-<image class="av" x="{ix}" y="{iy}" width="{IMG_SIZE}" height="{IMG_SIZE}"
-       href="{uri}" xlink:href="{uri}" clip-path="url(#avclip)" preserveAspectRatio="none"/>
-<text x="{INFO_X}" y="30" fill="{c['fg']}">
+<text x="{ART_X0}" y="{ART_TOP}" fill="{c['fg']}">
+{chr(10).join(art_svg)}
+</text>
+<text x="{INFO_X}" y="{ART_TOP}" fill="{c['fg']}">
 {chr(10).join(info_svg)}
 </text>
 </svg>
@@ -175,12 +242,13 @@ text, tspan {{white-space: pre;}}
 
 def main() -> None:
     root = Path(__file__).resolve().parent.parent
-    uri, png_bytes = avatar_data_uri()
-    print(f"avatar: {AVATAR_PX}x{AVATAR_PX} png, {png_bytes / 1024:.1f} KB")
+    art = ascii_portrait()
     for name in ("dark", "light"):
         out = root / f"banner-{name}.svg"
-        out.write_text(build(name, uri), encoding="utf-8")
+        out.write_text(build(name, art), encoding="utf-8")
         print(f"wrote {out.relative_to(root)}  ({out.stat().st_size / 1024:.1f} KB)")
+    print()
+    print("\n".join(art))
 
 
 if __name__ == "__main__":
