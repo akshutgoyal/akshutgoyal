@@ -12,34 +12,34 @@
 .value {fill: #0a3069;}
 .cc    {fill: #c2cfde;}
 text, tspan {white-space: pre;}
+#art   {font-size: 16px;}
 </style>
 <rect width="985" height="530" fill="#f6f8fa" rx="15"/>
-<text x="15" y="30" fill="#24292f">
-<tspan x="15" y="30">                      +@              </tspan>
-<tspan x="15" y="50">                     @ .:             </tspan>
-<tspan x="15" y="70">                %@* %@@@              </tspan>
-<tspan x="15" y="90">        % -%#@%%+%@@ : +%             </tspan>
-<tspan x="15" y="110">          +*@#+.  =  -. @             </tspan>
-<tspan x="15" y="130">     =%@#@%%#.   -      @             </tspan>
-<tspan x="15" y="150">    =@@@@@@@#*%%:      =#             </tspan>
-<tspan x="15" y="170">     =#@@@@@@@@* #@    .+             </tspan>
-<tspan x="15" y="190">     -=#@@@@@@+  @@     +-            </tspan>
-<tspan x="15" y="210">  .*+@#++#@@@@   @@.-:-#*@            </tspan>
-<tspan x="15" y="230">@*%%+@-@%-#%#*   @@=+#+=::            </tspan>
-<tspan x="15" y="250">--==%. =#@+##-  +@@+#@# .             </tspan>
-<tspan x="15" y="270">- -+#*. +@%*@@*%@@%:=+%+              </tspan>
-<tspan x="15" y="290">-..:+==  :*@%%#@@=-+=-@@              </tspan>
-<tspan x="15" y="310">    ..--   -.-  @@=*:-=:   @@@-       </tspan>
-<tspan x="15" y="330">:  .:           +@@@@%@* :@@@@#@@@@##*</tspan>
-<tspan x="15" y="350">*++@*.           -@*@@@@@@@*%#-#*+=###</tspan>
-<tspan x="15" y="370">++=##                 . *%+-- #@+  -%@</tspan>
-<tspan x="15" y="390">@#*+-  .*         .      =-    :. -%@@</tspan>
-<tspan x="15" y="410">@@@@@%#=*-=+*#@@%#%=*%*+#*=@@*@##%*-  </tspan>
-<tspan x="15" y="430">@@@@@@@@@@@###:                       </tspan>
-<tspan x="15" y="450">   :+%@@@@@@@@@*-                     </tspan>
-<tspan x="15" y="470">          -*@@@@@@@@@%+               </tspan>
-<tspan x="15" y="490">                 -%@@@@@@-            </tspan>
-<tspan x="15" y="510">                     @@@@@@           </tspan>
+<text id="art" x="15" y="30" fill="#24292f">
+<tspan x="15" y="30">............................c@#.......</tspan>
+<tspan x="15" y="50">...........................@o~c#......</tspan>
+<tspan x="15" y="70">.........................o@o~:c@......</tspan>
+<tspan x="15" y="90">..................c%oc...%%covov......</tspan>
+<tspan x="15" y="110">.....occ.......%~c%%%%%%@o%o@@o%......</tspan>
+<tspan x="15" y="130">...o@c~vvo%%%%o~voo%###%:;ccvoo@%.....</tspan>
+<tspan x="15" y="150">....o~~~vco%cooo%o~:~@@@%c~v~:vco.....</tspan>
+<tspan x="15" y="170">.cvvvc~cooc%@coov~v;coc~:;ooc:;o%.....</tspan>
+<tspan x="15" y="190">occccvccc%coccc~~~~oo.:.:..:c;;o@%....</tspan>
+<tspan x="15" y="210">oo%%%o%%ooo%ovvcv~;v~::::.:::;cc%.....</tspan>
+<tspan x="15" y="230">o%%%@@%o%@@c%coccc~~;~~;:::::~ooo.....</tspan>
+<tspan x="15" y="250">ooo%%%%%@@c%o%c@@oo%c~;;;~~~~ccvo.....</tspan>
+<tspan x="15" y="270">cooo%%%%@o%@c%%o%~~;o#@v:~~v~vcvo.....</tspan>
+<tspan x="15" y="290">cccoo%%%%o%%%o@%;:;~@#o~~~;:;~vvco....</tspan>
+<tspan x="15" y="310">cocoooo%%@@@#@@;::;c@@vcv~c~~ccvc@....</tspan>
+<tspan x="15" y="330">ovoccoo@@@%%%@%:::;~%#c~~vv~cccoo%o...</tspan>
+<tspan x="15" y="350">@%cccvvvc@%%%@v:;:~c%#ccococococvc~%..</tspan>
+<tspan x="15" y="370">o:@@v#cv%%~occ~;;;~%##ccc~cvvc~ovv%%..</tspan>
+<tspan x="15" y="390">o:~@;@#~o#v%ccv;::c##@occo@%oovvc~;...</tspan>
+<tspan x="15" y="410">~ccvvc#~v%~o%~v~~:v#@@cccoocov~vvcv...</tspan>
+<tspan x="15" y="430">cvvovc@ov%cc@o~ccc%o@@ovcoc%oovv:;;...</tspan>
+<tspan x="15" y="450">cvv;cc%%@ocoo@%%%%@%%vccvcv~ooo~:v....</tspan>
+<tspan x="15" y="470">vcc~;vccco%%cocv@ococvc~%coc@@o~......</tspan>
+<tspan x="15" y="490">vccv~;::~c%ccccv~@@coo%%c;vvvov~;:..~c</tspan>
 </text>
 <text x="390" y="30" fill="#24292f">
 <tspan x="390" y="30">akshut@goyal ───────────────────────────────────────────────</tspan>

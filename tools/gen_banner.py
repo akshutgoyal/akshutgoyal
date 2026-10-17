@@ -10,13 +10,41 @@ Matching his technique means the portrait is *text*, not an embedded raster
 image -- so there is no base64 payload, the file stays ~6 KB, and the
 portrait recolours with the theme instead of being a fixed photo.
 
-Two things this particular source photo needs that the reference banner's
-does not, because his is a face against a plain dark wall:
+His photo is a face against a plain dark wall. This one is a dark cat lying on
+a light tiled floor, which turns out to need a different treatment. Five things
+that were not obvious going in:
 
-  1. GrabCut, to lift the cat off a busy tiled background. Without it the
+  1. GrabCut, to lift the cat off that busy tiled background. Without it the
      grout lines and wall stains render as noise and swamp the subject.
-  2. A short 10-level ramp. A long ramp (60+ glyphs) resolves to
-     high-frequency mush at 38x25 cells; ten levels read as shapes.
+  2. The mask used as a gate, not merely a cut-out. Tone alone cannot hold
+     this silhouette: the cat's chest and the top of its head are as light as
+     the wall behind them, so keying off brightness alone leaves holes through
+     the body. The mask decides which cells are cat; tone only chooses glyph.
+  3. A tonal window measured from the subject rather than guessed. This cat's
+     median sits near 91 and its lit fur reaches 238, so the 70..150 window
+     that looked reasonable erased about three quarters of it.
+  4. Glyphs chosen by MEASURED coverage, not by their order in the ramp. A
+     ramp like " .:-=+*#%@" assumes each glyph prints a little more than the
+     last, and at these sizes that is simply false: ':' and '-' measure 0.049
+     and 0.051, '+' and '*' both measure 0.157, and '#' prints denser than
+     '@'. Sorting by measurement is what stops the portrait going flat.
+  5. The background drawn as a faint glyph field rather than left empty. The
+     cat is DARKER than its background and the card is dark, so no single
+     mapping works: natural order sinks the cat into the card, and inverted
+     order flips its own shading so its dark head becomes the brightest thing
+     in the frame. Giving the background a fixed sparse glyph and ordering the
+     cat's tones naturally above it sidesteps both -- the card then reads the
+     way the photo does, a pale form against a quiet field.
+
+Framing matters as much as any of those. Shot whole, the cat's head occupies
+only ~37% of the frame and the face never resolves, so SUBJECT_REGION crops to
+the head and chest -- which is also the framing the reference uses.
+
+Two other candidate treatments were tried and rejected. Keeping the photo's own
+background tones as a faint texture makes the tiled wall compete with the cat.
+A finer grid -- 8px, 77x48 -- sounds better but reads worse: the glyphs become
+comparable in size to the cat's features, so its fur turns to high-frequency
+static. ART_FONT stays at the info column's 16px, as in the reference.
 
 Deps: pillow, numpy, opencv-python
 Run:  python3 tools/gen_banner.py
@@ -31,7 +59,7 @@ from pathlib import Path
 try:
     import cv2
     import numpy as np
-    from PIL import Image, ImageDraw
+    from PIL import Image, ImageDraw, ImageFilter, ImageFont
 except ImportError:
     sys.exit("needs pillow, numpy and opencv-python:\n"
              "  pip install pillow numpy opencv-python")
@@ -39,28 +67,48 @@ except ImportError:
 # ---------------------------------------------------------------- geometry
 W, H = 985, 530
 RADIUS = 15
-FONT_SIZE = 16
-ROW_STEP = 20
-CHAR_W = 9.6              # monospace advance, worst case
+FONT_SIZE = 16            # type size of the info column
+ROW_STEP = 20             # and its line height
+ADVANCE = 0.6             # monospace advance as a fraction of the font size
 
 ART_X0 = 15
-ART_X1 = 390              # left column must stay clear of this
+ART_BOX_W = 370           # left column must stay clear of INFO_X
+ART_TOP = 30
+ART_BOX_H = 480
+ART_FONT = 16             # portrait type size -- same as the info column
+ART_ROW_STEP = 20
+
 INFO_X = 390
 INFO_COLS = 60
 VALUE_COL = 25
-
-ART_COLS, ART_ROWS = 38, 25
-ART_TOP = 30
 
 # ---------------------------------------------------------------- avatar
 AVATAR_URL = "https://avatars.githubusercontent.com/u/291477182?s=460&v=4"
 GRABCUT_RECT = (30, 20, 400, 400)   # x, y, w, h around the subject
 GRABCUT_ITERS = 6
 CLAHE_CLIP = 3.0
-BLACK, WHITE = 70, 150              # tonal window mapped across the ramp
+UNSHARP = (3, 140, 2)               # radius, percent, threshold
+SUBJECT_REGION = (0.18, 0.0, 0.74, 0.58)   # x0, y0, x1, y1 of the subject
+GATE = 0.45                         # cell coverage below this is background
+BG_GLYPH = "."                      # fixed faint glyph for the background
+MIN_INK = 0.10                      # floor, so cat cells always beat the field
 
-# Lightest ink to densest. Deliberately short -- see module docstring.
-RAMP = " .:-=+*#%@"
+# Candidate glyphs. Their order here only has to be roughly light-to-heavy:
+# selection sorts by MEASURED coverage (see glyph_coverage), which is what
+# keeps the portrait from collapsing onto a few glyphs that happen to share a
+# density. Space is not a candidate -- the background is drawn explicitly.
+RAMP = " .:;~vco%@#"
+
+# A mono face to measure glyph coverage with. The SVG itself still asks the
+# browser for Consolas/monospace; this only needs the same metrics, so any
+# DejaVu or Liberation mono will do.
+MONO_CANDIDATES = (
+    "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+    "/usr/share/fonts/dejavu/DejaVuSansMono.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf",
+    "/usr/share/fonts/truetype/liberation2/LiberationMono-Regular.ttf",
+    "/Library/Fonts/DejaVu Sans Mono.ttf",
+)
 
 # --------------------------------------------------------------- content
 INFO = [
@@ -115,8 +163,43 @@ def esc(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def subject_image() -> Image.Image:
-    """Fetch the avatar and isolate the subject on a flat white field."""
+def art_grid() -> tuple[int, int]:
+    """Cells the portrait box holds at the configured type size."""
+    return int(ART_BOX_W // (ART_FONT * ADVANCE)), int(ART_BOX_H // ART_ROW_STEP)
+
+
+def glyph_coverage() -> list[tuple[str, float]]:
+    """The ramp sorted by how much ink each glyph actually prints.
+
+    Coverage is measured by drawing the glyph at the size it will really be
+    rendered at, not assumed from its position in the ramp.
+    """
+    size = max(1, round(ART_FONT))
+    cw, ch = max(2, int(ART_FONT * ADVANCE)), max(2, int(ART_ROW_STEP))
+
+    path = next((p for p in MONO_CANDIDATES if Path(p).exists()), None)
+    if path is None:
+        # No font to measure with: fall back to the ramp's own order and
+        # pretend it is evenly spaced.
+        n = max(1, len(RAMP) - 1)
+        return sorted(((c, i / n) for i, c in enumerate(RAMP)), key=lambda kv: kv[1])
+
+    font = ImageFont.truetype(path, size)
+    measured = []
+    for ch in RAMP:
+        tile = Image.new("L", (cw, ch), 0)
+        ImageDraw.Draw(tile).text((0, 0), ch, fill=255, font=font)
+        measured.append((ch, float(np.asarray(tile).mean()) / 255.0))
+    return sorted(measured, key=lambda kv: kv[1])
+
+
+def subject() -> tuple[np.ndarray, np.ndarray]:
+    """Fetch the avatar; return the greyscale and mask of the framed subject.
+
+    The mask matters as much as the greyscale. It is what lets the portrait
+    hold a solid silhouette even where the cat's own fur is as light as the
+    background behind it.
+    """
     req = urllib.request.Request(
         AVATAR_URL, headers={"User-Agent": "akshutgoyal-profile-banner"}
     )
@@ -139,56 +222,104 @@ def subject_image() -> Image.Image:
 
     grey = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
     grey = cv2.createCLAHE(clipLimit=CLAHE_CLIP, tileGridSize=(8, 8)).apply(grey)
+    # Sharpen before the grid averages everything away, so the ear edges, the
+    # closed eye and the paw stay put instead of smearing.
+    grey = np.asarray(
+        Image.fromarray(grey).filter(ImageFilter.UnsharpMask(*UNSHARP))
+    )
 
     ys, xs = np.where(m > 0)
     h, w = m.shape
-    x0, x1 = max(0, xs.min()), min(w, xs.max())
-    y0, y1 = max(0, ys.min()), min(h, ys.max())
-    sub_g = grey[y0:y1, x0:x1].astype(np.float32)
-    sub_m = m[y0:y1, x0:x1].astype(np.float32) / 255.0
+    bx0, bx1 = max(0, xs.min()), min(w, xs.max())
+    by0, by1 = max(0, ys.min()), min(h, ys.max())
 
-    # Flat white background maps to the space character at the end of the ramp.
-    flat = sub_g * sub_m + 255.0 * (1.0 - sub_m)
-    return Image.fromarray(flat.astype(np.uint8))
+    # Frame the portrait. Shot whole, the cat's head is only ~37% of the frame,
+    # which leaves too few cells to read a face, so SUBJECT_REGION crops to the
+    # head and chest instead.
+    rx0, ry0, rx1, ry1 = SUBJECT_REGION
+    x0 = int(bx0 + (bx1 - bx0) * rx0)
+    x1 = int(bx0 + (bx1 - bx0) * rx1)
+    y0 = int(by0 + (by1 - by0) * ry0)
+    y1 = int(by0 + (by1 - by0) * ry1)
+    return grey[y0:y1, x0:x1], m[y0:y1, x0:x1]
 
 
-def ascii_portrait() -> list[str]:
-    img = subject_image()
+def ascii_portrait(dense_is_light: bool) -> list[str]:
+    """Render the portrait.
 
-    # A cell is 9.6 x 20 px, so the character grid is far taller than wide.
-    # Crop the source to that ratio first or the portrait comes out stretched.
-    target = (ART_COLS * CHAR_W) / (ART_ROWS * ROW_STEP)
-    w, h = img.size
+    `dense_is_light` says what a dense glyph looks like on the card the
+    portrait is going onto. On the dark card the glyphs ARE the light, so the
+    cat's pale fur takes the dense ones and it looks like itself. On the light
+    card dense glyphs are dark ink, and drawing the same grid there would turn
+    the cat into a photographic negative -- its pale fur would come out dark.
+    So the polarity follows the card.
+    """
+    cols, rows = art_grid()
+    grey, mask = subject()
+
+    # A cell is (ART_FONT * ADVANCE) wide by ART_ROW_STEP tall, so the grid is
+    # far taller than wide. Crop to that ratio first or it comes out stretched.
+    target = (cols * ART_FONT * ADVANCE) / (rows * ART_ROW_STEP)
+    h, w = grey.shape
     if w / h > target:
-        nw = h * target
-        img = img.crop(((w - nw) / 2, 0, (w - nw) / 2 + nw, h))
+        nw = int(h * target)
+        sx = (w - nw) // 2
+        box = (slice(None), slice(sx, sx + nw))
     else:
-        nh = w / target
-        img = img.crop((0, (h - nh) / 2, w, (h - nh) / 2 + nh))
+        nh = int(w / target)
+        sy = (h - nh) // 2
+        box = (slice(sy, sy + nh), slice(None))
 
-    img = img.resize((ART_COLS, ART_ROWS), Image.LANCZOS)
-    px = img.load()
+    # Area-average both planes down to the character grid.
+    g = cv2.resize(grey[box], (cols, rows), interpolation=cv2.INTER_AREA)
+    cov = cv2.resize(mask[box], (cols, rows),
+                     interpolation=cv2.INTER_AREA).astype(np.float32) / 255.0
 
-    rows = []
-    for y in range(ART_ROWS):
+    # Map the subject's own tonal range across the ramp rather than a guessed
+    # window. This cat's median sits near 91 and its lit fur reaches 238, so a
+    # fixed 70..150 window erased three quarters of it.
+    fg = grey[mask > 0]
+    black, white = (float(np.percentile(fg, p)) for p in (2, 98))
+
+    # Glyphs are chosen by measured ink, and the wanted ink is normalised onto
+    # the range glyphs can actually reach: the densest one prints barely a
+    # third of its cell, so asking for full ink and taking the nearest glyph
+    # squashes every dark cell onto the same glyph.
+    #
+    # The subject is floored so that no cell of it ever prints fainter than the
+    # background field, which is what keeps its outline intact where its fur is
+    # as pale as the wall behind it.
+    usable = [(c, v) for c, v in glyph_coverage() if c != " "]
+    hi = usable[-1][1]
+
+    # On the dark card, dense glyphs read as light, so the cat's pale fur must
+    # take them. On the light card dense glyphs read as dark, so the mapping
+    # flips. Either way the fur that is pale in the photo comes out pale.
+    def ink(lum: float) -> float:
+        return lum if dense_is_light else 1.0 - lum
+
+    art = []
+    for y in range(rows):
         row = []
-        for x in range(ART_COLS):
-            lum = max(0.0, min(1.0, (px[x, y] - BLACK) / (WHITE - BLACK)))
-            # Dark pixels become dense glyphs, so on the dark card the subject
-            # reads as the lit region -- how ASCII art behaves on a terminal.
-            row.append(RAMP[min(len(RAMP) - 1, int((1.0 - lum) * len(RAMP)))])
-        rows.append("".join(row))
-    return rows
+        for x in range(cols):
+            if cov[y, x] < GATE:
+                row.append(BG_GLYPH)     # the mask, not tone, says background
+                continue
+            lum = max(0.0, min(1.0, (g[y, x] - black) / (white - black)))
+            want = MIN_INK + ink(lum) * (hi - MIN_INK)
+            row.append(min(usable, key=lambda kv: abs(kv[1] - want))[0])
+        art.append("".join(row))
+    return art
 
 
 def build(theme_name: str, art: list[str]) -> str:
     c = THEMES[theme_name]
 
     # Art rows are centred against the 25-row info column.
-    pad = (len(INFO) - len(art)) // 2
+    pad = max(0, (len(INFO) - len(art)) // 2)
     art_svg = []
     for i, row in enumerate(art):
-        y = ART_TOP + (i + pad) * ROW_STEP
+        y = ART_TOP + (i + pad) * ART_ROW_STEP
         art_svg.append(f'<tspan x="{ART_X0}" y="{y}">{esc(row)}</tspan>')
 
     info_svg = []
@@ -228,9 +359,10 @@ def build(theme_name: str, art: list[str]) -> str:
 .value {{fill: {c['value']};}}
 .cc    {{fill: {c['cc']};}}
 text, tspan {{white-space: pre;}}
+#art   {{font-size: {ART_FONT}px;}}
 </style>
 <rect width="{W}" height="{H}" fill="{c['bg']}" rx="{RADIUS}"/>
-<text x="{ART_X0}" y="{ART_TOP}" fill="{c['fg']}">
+<text id="art" x="{ART_X0}" y="{ART_TOP}" fill="{c['fg']}">
 {chr(10).join(art_svg)}
 </text>
 <text x="{INFO_X}" y="{ART_TOP}" fill="{c['fg']}">
@@ -242,13 +374,18 @@ text, tspan {{white-space: pre;}}
 
 def main() -> None:
     root = Path(__file__).resolve().parent.parent
-    art = ascii_portrait()
-    for name in ("dark", "light"):
+    cols, rows = art_grid()
+    # Dense glyphs are light on the dark card and dark on the light card, so
+    # each theme gets its portrait drawn with the matching polarity.
+    arts = {"dark": ascii_portrait(dense_is_light=True),
+            "light": ascii_portrait(dense_is_light=False)}
+    for name, art in arts.items():
         out = root / f"banner-{name}.svg"
         out.write_text(build(name, art), encoding="utf-8")
         print(f"wrote {out.relative_to(root)}  ({out.stat().st_size / 1024:.1f} KB)")
+    print(f"portrait: {cols}x{rows} cells at {ART_FONT}px / {ART_ROW_STEP}px rows")
     print()
-    print("\n".join(art))
+    print("\n".join(arts["dark"]))
 
 
 if __name__ == "__main__":
