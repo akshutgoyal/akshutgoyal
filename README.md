@@ -79,19 +79,31 @@
 
 ---
 
-## 🗄️ Also public
+## 🧭 Project timeline
 
-Earlier web work and a couple of automation tools, newest first.
+### 2026
 
-| Project | What it is | Built with |
-| :--- | :--- | :--- |
-| 🎯 **[Earnpt-Automation](https://github.com/akshutgoyal/Earnpt-Automation)** | Playwright driving an already-signed-in Chrome profile over the DevTools Protocol — opens AI tabs, sends prompts, and steps through accounts behind a verified-view counter. | JavaScript · Playwright · CDP |
-| 🛡️ **[DDOS-Tester](https://github.com/akshutgoyal/DDOS-Tester)** | An async load tester that ramps concurrency gradually to find where a server's rate limits and breaking points actually sit. Carries an explicit authorised-use disclaimer. | Python · aiohttp |
-| 💚 **[Green-Pulse-Connect](https://github.com/akshutgoyal/Green-Pulse-Connect)** | A sustainability community platform — green living tips, renewable energy, zero-waste living, eco-product reviews and climate advocacy in one place. | Laravel 10 · PHP 8.1 · Livewire · MySQL |
-| ♾️ **[SrinivasaRamanujan](https://github.com/akshutgoyal/SrinivasaRamanujan)** · **[Independia](https://github.com/akshutgoyal/Independia)** | Two Design Championship entries — a tribute to Ramanujan (2023) and a journey-towards-independence piece (2022). Both still have live builds. | HTML · CSS · JavaScript |
-| ✍️ **[Bloggers-Hub](https://github.com/akshutgoyal/Bloggers-Hub)** | A multi-page blog site — about, contact, privacy, terms and a working registration flow — written before I ever reached for a framework. | HTML · CSS · Bootstrap · jQuery |
-| 🏛️ **[Virtual-Museum](https://github.com/akshutgoyal/Virtual-Museum)** | A PHP virtual tour of the National Museum, New Delhi, with a self-hosted carousel and a downloadable brochure. | PHP · jQuery · Owl Carousel |
-| 📈 **[GrowtheX](https://github.com/akshutgoyal/GrowtheX)** | A landing site for a stock-trading concept, complete with an animated profit calculator in the marketing copy. | HTML · CSS · jQuery · Lottie |
+- 🐍 **[zulip-processor-practice](https://github.com/akshutgoyal/zulip-processor-practice)** — Working through the Zulip API surface against a real server to practise reading and extending someone else's codebase. `Python` `Zulip API`
+- 🌱 **[ROADSENSE](https://github.com/akshutgoyal/ROADSENSE)** — Turns a walk into a road survey: potholes detected on-device, C&D heaps captured by hand, both landing in one engineer worklist with closure audit and recycler routing. `Flutter` `PyTorch / YOLOv8` `React 19` `MapLibre` `AWS`
+- ⌨️ **[Keylogger](https://github.com/akshutgoyal/Keylogger)** — A Linux key-event reader built as a step-by-step C exercise for DTU's EHAX cybersecurity club. `C`
+- 🩺 **[ApnaRecord](https://github.com/akshutgoyal/ApnaRecord)** — Patient-owned medical records — login is a wallet, a record is a soulbound token, permission is a smart contract. `Solidity` `OpenZeppelin` `Base Sepolia` `React` `Express` `Cloudflare R2` · [live](https://apna-record.vercel.app)
+- 🎯 **[Earnpt-Automation](https://github.com/akshutgoyal/Earnpt-Automation)** — Playwright driving an already-signed-in Chrome profile over the DevTools Protocol — opens AI tabs, sends prompts, and steps through accounts behind a verified-view counter. `JavaScript` `Playwright` `CDP`
+
+### 2025
+
+- 🛡️ **[DDOS-Tester](https://github.com/akshutgoyal/DDOS-Tester)** — An async load tester that ramps concurrency gradually to find where a server's rate limits and breaking points actually sit. Carries an explicit authorised-use disclaimer. `Python` `aiohttp`
+
+### 2023
+
+- 💚 **[Green-Pulse-Connect](https://github.com/akshutgoyal/Green-Pulse-Connect)** — A sustainability community platform — green living tips, renewable energy, zero-waste living, eco-product reviews and climate advocacy in one place. `Laravel 10` `PHP 8.1` `Livewire` `MySQL`
+- ♾️ **[SrinivasaRamanujan](https://github.com/akshutgoyal/SrinivasaRamanujan)** — A Design Championship tribute to Ramanujan (2023). `HTML` `CSS` `JavaScript` · [live](https://akshutgoyal.github.io/SrinivasaRamanujan/)
+
+### 2022
+
+- 🏛️ **[Virtual-Museum](https://github.com/akshutgoyal/Virtual-Museum)** — A PHP virtual tour of the National Museum, New Delhi, with a self-hosted carousel and a downloadable brochure. `PHP` `jQuery` `Owl Carousel`
+- 🕊️ **[Independia](https://github.com/akshutgoyal/Independia)** — A journey-towards-independence Design Championship piece (2022). `HTML` `CSS` `JavaScript` · [live](https://akshutgoyal.github.io/Independia/)
+- ✍️ **[Bloggers-Hub](https://github.com/akshutgoyal/Bloggers-Hub)** — A multi-page blog site — about, contact, privacy, terms and a working registration flow — written before I ever reached for a framework. `HTML` `CSS` `Bootstrap` `jQuery` · [live](https://akshutgoyal.github.io/Bloggers-Hub/)
+- 📈 **[GrowtheX](https://github.com/akshutgoyal/GrowtheX)** — A landing site for a stock-trading concept, complete with an animated profit calculator. `HTML` `CSS` `jQuery` `Lottie` · [live](https://akshutgoyal.github.io/GrowtheX/)
 
 ---
 
